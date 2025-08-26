@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Handbook Assistant</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link rel="stylesheet" href="/assets/styles.css?v=23" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="top-loader"></div>
+  <div class="app">
+    <header class="header glass">
+      <div class="brand">📘 Handbook Assistant</div>
+      <nav class="nav">
+        <a href="#chat" class="nav-link active" data-tab="chat">💬 Chat</a>
+        <a href="#notebooks" class="nav-link" data-tab="notebooks">📓 Notebooks</a>
+        <a href="#ingest" class="nav-link" data-tab="ingest">📥 Ingestion</a>
+        <a href="#reports" class="nav-link" data-tab="reports">📊 Report</a>
+        <a href="#config" class="nav-link" data-tab="config">⚙️ Config</a>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section id="tab-chat" class="tab active">
+        <div class="chat-layout" id="chat-main-layout">
+          <div class="chat-pane glass">
+            <div class="chat-header">
+              <span>💬 Conversazione</span>
+              <div class="chat-controls">
+                <button id="history-toggle" class="btn btn-ghost" title="Mostra/Nascondi Cronologia">📜 Cronologia</button>
+                <button id="chat-clear" class="btn btn-ghost">🗑️ Pulisci</button>
+              </div>
+            </div>
+            <div id="chat-history" class="chat-history"></div>
+            <div class="chat-input">
+              <input id="chat-text" type="text" placeholder="Fai una domanda..." />
+              <button id="chat-send" class="btn">Invia</button>
+            </div>
+          </div>
+          
+          <div class="preview-pane glass">
+            <div class="preview-header">Fonti e Anteprime</div>
+            <div id="preview-items" class="preview-items"></div>
+          </div>
+          
+          <!-- Cronologia Panel - Initially Hidden -->
+          <div id="history-panel" class="history-panel glass" style="display: none;">
+            <div class="panel-header">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span>📜 Cronologia Chat</span>
+                <div style="display: flex; gap: 8px;">
+                  <button id="history-refresh" class="btn btn-ghost">🔄</button>
+                  <button id="history-clear-all" class="btn btn-ghost" style="color: #ff6b6b;">🗑️</button>
+                  <button id="history-close" class="btn btn-ghost">✕</button>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="row" style="margin-bottom: 16px;">
+                <input id="history-search" placeholder="🔍 Cerca nella cronologia..." />
+                <select id="history-filter">
+                  <option value="all">Tutti i messaggi</option>
+                  <option value="user">Solo domande</option>
+                  <option value="assistant">Solo risposte</option>
+                </select>
+              </div>
+              <div id="history-stats" class="small" style="margin-bottom: 12px; color: var(--sub);"></div>
+              <div id="history-list" class="list" style="max-height: 50vh; overflow-y: auto;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-notebooks" class="tab">
+        <div class="notebook-layout" id="notebook-main-layout">
+          <div class="notebook-panels">
+            <div class="notebook-header">
+              <h2>📓 Notebook Explorer</h2>
+              <button id="notebook-history-toggle" class="btn btn-ghost" title="Mostra/Nascondi Cronologia">📜 Cronologia</button>
+            </div>
+            
+            <div class="notebook-pane glass">
+              <div class="notebook-search">
+                <div class="search-row">
+                  <input id="nb-query" placeholder="🔍 Cerca notebook per nome o contenuto..." />
+                  <select id="nb-root" class="btn" title="Seleziona origine">
+                    <option value="auto">🔄 Auto</option>
+                    <option value="data">📁 Data</option>
+                    <option value="remote">☁️ Remote</option>
+                  </select>
+                  <button id="nb-list" class="btn btn-accent">🚀 Cerca</button>
+                </div>
+                <div class="search-actions">
+                  <button id="nb-clear" class="btn btn-ghost" title="Pulisci risultati">🗑️ Pulisci</button>
+                  <button id="nb-new-search" class="btn btn-ghost" title="Nuova ricerca">✨ Nuova Ricerca</button>
+                </div>
+              </div>
+              <div id="nb-results" class="notebook-results"></div>
+            </div>
+          </div>
+          
+          <!-- Notebook History Panel (hidden by default) -->
+          <div id="notebook-history-panel" class="history-panel" style="display: none;">
+            <div class="notebook-history-header">
+              <h3>📜 Cronologia Notebook</h3>
+              <button id="notebook-history-close" class="btn btn-ghost" title="Nascondi cronologia">✕</button>
+            </div>
+            
+            <div class="history-controls">
+              <input id="notebook-history-search" type="text" placeholder="🔍 Filtra cronologia..." />
+              <select id="notebook-history-filter" class="btn btn-ghost">
+                <option value="all">Tutte</option>
+                <option value="data">Data</option>
+                <option value="remote">Remote</option>
+                <option value="auto">Auto</option>
+              </select>
+            </div>
+            
+            <div class="history-actions">
+              <button id="notebook-history-refresh" class="btn btn-ghost" title="Aggiorna cronologia">🔄 Aggiorna</button>
+              <button id="notebook-history-clear-all" class="btn btn-ghost" title="Cancella tutta la cronologia">🗑️ Cancella Tutto</button>
+            </div>
+            
+            <div id="notebook-history-list" class="history-content"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-ingest" class="tab">
+        <div class="ingest-layout" id="ingest-main-layout">
+          <div class="ingest-panels">
+            <div class="ingest-header">
+              <h2>📥 Gestione Ingestion</h2>
+              <button id="ingestion-history-toggle" class="btn btn-ghost" title="Mostra/Nascondi Cronologia">📋 Cronologia</button>
+            </div>
+            
+            <div class="grid">
+              <div class="panel glass">
+                <div class="panel-header">Ingestion locale</div>
+                <div class="panel-body">
+                  <input id="ingest-subdir" placeholder="Sotto-cartella (opzionale)" />
+                  <button id="ingest-run" class="btn">Esegui ingestion</button>
+                </div>
+              </div>
+              <div class="panel glass">
+                <div class="panel-header">Google Drive</div>
+                <div class="panel-body">
+                  <textarea id="drive-urls" placeholder="URL/ID cartelle (una per riga)"></textarea>
+                  <button id="drive-sync" class="btn">Sincronizza e indicizza</button>
+                  <div id="drive-status" class="small" style="opacity:0.8"></div>
+                </div>
+              </div>
+              <div class="panel glass">
+                <div class="panel-header">Discord (beta) 
+                  <button id="discord-help-toggle" class="btn btn-ghost small" style="float: right; font-size: 12px; padding: 4px 8px;">❓ Aiuto</button>
+                </div>
+                <div class="panel-body">
+                  <div id="discord-help" class="small" style="display: none; background: rgba(74, 144, 226, 0.1); padding: 10px; border-radius: 8px; margin-bottom: 10px; font-size: 11px;">
+                    <strong>🤖 Setup Bot Discord:</strong><br>
+                    1. Vai su <a href="https://discord.com/developers/applications" target="_blank">Discord Developer Portal</a><br>
+                    2. Crea "New Application" → sezione "Bot"<br>
+                    3. Clicca "Reset Token" e copia il nuovo token<br>
+                    4. Se presente, abilita "MESSAGE CONTENT INTENT" (solo per bot verificati)<br>
+                    5. Genera invite link: sezione "OAuth2" → "URL Generator" → scope "bot" → permessi "View Channel" + "Read Message History"<br>
+                    6. Usa l'invite link per aggiungere il bot al server<br>
+                    <strong>📋 Channel ID:</strong> Impostazioni Discord → Avanzate → "Modalità sviluppatore" ON → tasto destro canale → "Copia ID"
+                  </div>
+                  <input id="discord-token" type="password" placeholder="Bot token (es: MTIzNDU2Nzg5...)" />
+                  <input id="discord-channels" placeholder="Channel IDs (es: 123456789,987654321)" />
+                  <input id="discord-max" type="number" value="500" min="50" max="5000" placeholder="Max messaggi" />
+                  <button id="discord-backfill" class="btn">Backfill e indicizza</button>
+                  <div id="discord-status" class="small" style="opacity:0.8"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Ingestion History Panel - Initially Hidden -->
+          <div id="ingestion-history-panel" class="history-panel glass" style="display: none;">
+            <div class="panel-header">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span>📋 Cronologia Ingestion</span>
+                <div style="display: flex; gap: 8px;">
+                  <button id="ingestion-history-refresh" class="btn btn-ghost">🔄</button>
+                  <button id="ingestion-history-close" class="btn btn-ghost">✕</button>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="row" style="margin-bottom: 16px;">
+                <input id="ingestion-search" placeholder="🔍 Cerca nelle ingestion..." />
+                <select id="ingestion-filter">
+                  <option value="all">Tutti i tipi</option>
+                  <option value="drive">Google Drive</option>
+                  <option value="local">Locale</option>
+                  <option value="discord">Discord</option>
+                </select>
+              </div>
+              <div id="ingestion-stats" class="small" style="margin-bottom: 12px; color: var(--sub);"></div>
+              <div id="ingestion-list" class="list" style="max-height: 50vh; overflow-y: auto;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-reports" class="tab">
+        <div class="panel glass">
+          <div class="panel-header">Report generati</div>
+          <div class="panel-body">
+            <div id="reports-list" class="list"></div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section id="tab-config" class="tab">
+        <div class="grid">
+          <div class="panel glass">
+            <div class="panel-header">OpenAI</div>
+            <div class="panel-body">
+              <input id="cfg-openai-key" type="password" placeholder="OPENAI_API_KEY" />
+              <button id="cfg-save-openai" class="btn">Salva chiave</button>
+              <small id="cfg-openai-state"></small>
+            </div>
+          </div>
+          <div class="panel glass">
+            <div class="panel-header">Google Drive - Service Account</div>
+            <div class="panel-body">
+              <textarea id="cfg-drive-json" placeholder='Incolla JSON del service account'></textarea>
+              <button id="cfg-save-drive" class="btn">Salva service account</button>
+              <small id="cfg-drive-state"></small>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
+  <script src="/assets/app.js?v=36" defer></script>
+  <script>
+    document.querySelectorAll('.nav-link').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const tab = a.dataset.tab;
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        a.classList.add('active');
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('tab-' + tab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+<!-- Built with ❤️ for DatapizzAI -->
+</html>
+
+

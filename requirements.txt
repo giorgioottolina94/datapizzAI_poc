@@ -1,0 +1,40 @@
+# Web Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# DatapizzAI Dependencies
+openai>=1.0.0
+anthropic
+google-generativeai
+qdrant-client
+sentence-transformers
+
+# Document Processing
+PyMuPDF
+python-docx
+python-pptx
+openpyxl
+beautifulsoup4
+lxml
+
+# Google APIs
+google-api-python-client
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+
+# Jupyter/Notebook Support
+papermill
+nbconvert
+nbformat
+ipykernel
+
+# Discord API
+requests
+
+# Utilities
+python-multipart
+aiofiles
+pydantic
+python-dotenv
+pyngrok
