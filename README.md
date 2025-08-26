@@ -11,7 +11,6 @@ Inizialmente sviluppato come assistente per il **manuale SIAE Academy**, questo 
 - 📚 **Documentation**: Guide tecniche, manuali prodotto, FAQ intelligenti  
 - 🎓 **Education**: Materiali didattici, corsi online, assistenti tutor
 - 🔬 **Research**: Paper collections, knowledge repositories, literature review
-- 🏥 **Healthcare**: Protocolli medici, linee guida, supporto decisionale
 
 ### 🚀 **Visione Future**
 Il progetto mira a diventare una **piattaforma modulare** dove organizzazioni di qualsiasi tipo possano:
