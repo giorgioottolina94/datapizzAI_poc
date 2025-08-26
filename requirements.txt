@@ -1,11 +1,16 @@
+# DatapizzAI Framework
+datapizzai>=1.0.0
+
 # Web Framework
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 
-# DatapizzAI Dependencies
+# AI Providers (used by DatapizzAI)
 openai>=1.0.0
 anthropic
 google-generativeai
+
+# Vector Database & Embeddings
 qdrant-client
 sentence-transformers
 
