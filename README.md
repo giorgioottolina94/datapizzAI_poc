@@ -1,6 +1,25 @@
 # 📚 DatapizzAI Handbook Assistant - Web Interface
 
-Una moderna interfaccia web per l'assistente del manuale SIAE Academy, costruita con **FastAPI** e vanilla JavaScript, che utilizza estensivamente il **framework DatapizzAI** per tutte le funzionalità di AI e RAG.
+Una moderna interfaccia web per assistenti handbook intelligenti, costruita con **FastAPI** e vanilla JavaScript, che utilizza estensivamente il **framework DatapizzAI** per tutte le funzionalità di AI e RAG.
+
+## 🎯 **Evoluzione del Progetto**
+
+Inizialmente sviluppato come assistente per il **manuale SIAE Academy**, questo progetto si sta evolvendo in una **soluzione general-purpose** per creare assistenti handbook RAG + agents per qualsiasi dominio:
+
+- 🏫 **SIAE Academy**: Punto di partenza con contenuti educativi e notebook
+- 🏢 **Enterprise**: Handbook aziendali, documentazione interna, knowledge base
+- 📚 **Documentation**: Guide tecniche, manuali prodotto, FAQ intelligenti  
+- 🎓 **Education**: Materiali didattici, corsi online, assistenti tutor
+- 🔬 **Research**: Paper collections, knowledge repositories, literature review
+- 🏥 **Healthcare**: Protocolli medici, linee guida, supporto decisionale
+
+### 🚀 **Visione Future**
+Il progetto mira a diventare una **piattaforma modulare** dove organizzazioni di qualsiasi tipo possano:
+- Caricare la propria documentazione (PDF, Word, Excel, etc.)
+- Configurare agenti specializzati per il proprio dominio
+- Personalizzare l'interfaccia e i workflow
+- Integrare con sistemi esistenti (Slack, Teams, etc.)
+- Scalare da uso personale a enterprise
 
 ## 🧠 DatapizzAI Framework Integration
 
@@ -263,6 +282,28 @@ Il design è completamente personalizzabile modificando:
 - Verifica che il bot abbia i permessi corretti
 - Controlla che il token sia valido
 
+## 💼 **Casi d'Uso Pratici**
+
+Grazie alla sua architettura modulare basata su **DatapizzAI**, il progetto può essere facilmente adattato per:
+
+### 🏢 **Enterprise & Business**
+- **Knowledge Management**: Centralizzare e rendere ricercabile la documentazione aziendale
+- **Customer Support**: Assistenti per FAQ, troubleshooting, product knowledge
+- **Employee Onboarding**: Guide interattive per nuovi dipendenti
+- **Compliance & Policies**: Navigazione intelligente di regolamenti e procedure
+
+### 🎓 **Education & Training**  
+- **Course Materials**: Assistenti per materiali didattici e syllabus
+- **Research Assistant**: Navigazione di paper, tesi, bibliografia
+- **Student Support**: Tutor AI per domande su corsi e assignment
+- **Institutional Knowledge**: Archivi storici e documentazione accademica
+
+### 🔬 **Technical & Scientific**
+- **API Documentation**: Assistenti per documentazione tecnica
+- **Research Papers**: RAG per literature review e knowledge discovery
+- **Protocol Management**: Procedure scientifiche e best practices
+- **Code Documentation**: Assistenti per codebase e wiki tecniche
+
 ## 🎓 Imparare DatapizzAI
 
 Questo progetto è un **esempio pratico completo** di come utilizzare DatapizzAI per creare applicazioni AI avanzate. È perfetto per:
@@ -271,6 +312,7 @@ Questo progetto è un **esempio pratico completo** di come utilizzare DatapizzAI
 - **Data Scientists** interessati a RAG e sistemi conversazionali  
 - **Studenti** che studiano architetture AI moderne
 - **Aziende** che vogliono implementare assistenti AI interni
+- **Organizzazioni** che cercano soluzioni handbook general-purpose
 
 ### 📖 **Concetti DatapizzAI Dimostrati**
 - ✅ **Agent-based Architecture**: Agenti conversazionali con tools
